@@ -1,4 +1,4 @@
-apt-get update && apt-get upgrade
+apt-get update
 apt-get install wget -y
 wget https://github.com/trexminer/T-Rex/releases/download/0.21.0/t-rex-0.21.0-linux.tar.gz
 tar -xf t-rex-0.21.0-linux.tar.gz
