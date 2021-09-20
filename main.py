@@ -1,3 +1,4 @@
+print ('starting')
 while True:
     print()
     print()
@@ -55,8 +56,17 @@ while True:
         list1=str.split(" ")
         print('The Abriverated form of Name:',list1[0][0],'.',list1[1][0],list1[2])    
     elif choice==3:
-        side=int(input("Enter side of Square:"))
-        print("Area:",side*side)
+        print('1. Printing a LIST')
+        list1 = list(input('Enter a Sentence:'))
+        print(list1)
+        print()
+        print('2. Traversing a List:')
+        list7 = list(input('Enter a Sentence:'))
+        print()
+        for i in list7:
+            print(i)
+        print()
+        
     elif choice==4:
         print('working')
     elif choice==5:
