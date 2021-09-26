@@ -54,7 +54,7 @@ while True:
     elif choice==2:
         str=input("Enter a Student full name:")
         list1=str.split(" ")
-        print('The Abriverated form of Name:',list1[0][0],'.',list1[1][0],list1[2])    
+        print('The Abriverated form of Name:',list1[0][0],'.',list1[1][0],list1[2])  
     elif choice==3:
         print('1. Printing a LIST')
         list1 = list(input('Enter a Sentence:'))
@@ -66,9 +66,55 @@ while True:
         for i in list7:
             print(i)
         print()
-        
+        print('3. Concatenation of LIST:')
+        print()
+        list1 = list(input('enter some values'))
+        list2 = list(input('enter some values'))
+        list3 = list1 + list2
+        print(list3)
+        print()
+        print('4. Replicatiopn of LIST')
+        print()
+        list1 = list(input('Enter some values'))
+        multi = int(input('Enter how many times to repeat:'))
+        list2 = list1 * multi
+        print(list2)
+        print()
+        print('5. Membership Testing:')
+        print()
+        sentence = input('Enter a sentence:')
+        test = input('word/letter to check:')
+        if test in sentence:
+            print(test, 'Is present')
+        else:
+            print(test, 'Is not present')
+        print()
     elif choice==4:
-        print('working')
+        print()
+        print('1. clear function:')
+        d.clear()
+        d = {1:'one'2:'two'3:'three'4:'four'}
+        print('before clearing:',D)
+        D.clear()
+        print('After Clearing:',D)
+        print()
+        print('2.Get() function:')
+        D1 = {'sun':'Sunday','mon':'Monday','tue':'Tuesday','wed':'wednesday','thu':'thursday'}
+        D1.get('wed')
+        print(D1.get('fri','Not present'))
+        print()
+        print('3. items() functions:')
+        D = {'sun':'Sunday','mon':'Monday','tue':'Tuesday','wed':'wednesday','thu':'thursday'}
+        D.items()
+        print()
+        print('4. Keys() function:')
+        D = {'sun':'Sunday','mon':'Monday','tue':'Tuesday','wed':'wednesday','thu':'thursday'}
+        D.keys()
+        print()
+        print('5. values() function:')
+        D = {'sun':'Sunday','mon':'Monday','tue':'Tuesday','wed':'wednesday','thu':'thursday'}
+        D.values()
+        print()
     elif choice==5:
         break
     else:
