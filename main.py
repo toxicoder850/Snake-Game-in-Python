@@ -93,7 +93,7 @@ while True:
         print()
         print('1. clear function:')
         d.clear()
-        d = {1:'one'2:'two'3:'three'4:'four'}
+        d = {1:'one', 2:'two',3:'three',4:'four'}
         print('before clearing:',D)
         D.clear()
         print('After Clearing:',D)
