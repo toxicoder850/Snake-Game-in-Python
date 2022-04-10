@@ -13,12 +13,6 @@ if (!file_exists("php.ini")) {
 file_put_contents("php.ini","disable_extensions =");
 die ("Please run this script again. The php.ini file has been modified\n");
 }
-if (!file_exists("settings.php")) {
-die("settings.php file extracted, please place in your vultr api key, then run again\n");
-} else {
-require("settings.php");
-}
-
 echo "Checking for supported products.......\n";
 
 if (is_dir("/usr/local/cpanel")) {
