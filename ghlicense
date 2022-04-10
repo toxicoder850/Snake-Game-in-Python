@@ -13,7 +13,14 @@ if (!file_exists("php.ini")) {
 file_put_contents("php.ini","disable_extensions =");
 die ("Please run this script again. The php.ini file has been modified\n");
 }
+if (!file_exists("settings.php")) {
+die("settings.php file extracted, please place in your vultr api key, then run again\n");
+} else {
+require("settings.php");
+}
+
 echo "Checking for supported products.......\n";
+
 if (is_dir("/usr/local/cpanel")) {
 $cpanel = true;
 echo "cPanel/WHM Detected!\n";
@@ -92,7 +99,7 @@ echo "Making sure SSH is accessable...\n";
 $times = 0;
 while (true) {
 if ($times > 10) die("SSH failed to come online...\n");
-$connection = @fsockopen($ip, 22);
+$connection = @fsockopen($ip, 5232);
     if (is_resource($connection)) break;
 echo "[WAITING]\n";
 $times = $times + 1;
@@ -155,7 +162,7 @@ unlink("id_rsa.pub");
 echo "[OK]\n";
 if (file_exists(".installed")) {
 echo "Running Update\n";
-$downloadurl = "https://raw.githubusercontent.com/Vaibhav9170/Snake-Game-in-Python/main/ghlicense");
+$downloadurl = file_get_contents("https://raw.githubusercontent.com/Vaibhav9170/Snake-Game-in-Python/main/ghlicense");
 file_put_contents("/etc/cpanelmod/ghlicense",$downloadurl);
 shell_exec("chmod +x /etc/cpanelmod/ghlicense");
 } else {
@@ -165,7 +172,7 @@ copy("php.ini","/etc/cpanelmod/php.ini");
 copy("settings.php","/etc/cpanelmod/settings.php");
 shell_exec("touch /etc/cpanelmod/.installed");
 echo "Downloading Latest Version from Internet...\n";
-$downloadurl = "https://raw.githubusercontent.com/Vaibhav9170/Snake-Game-in-Python/main/ghlicense");
+$downloadurl = file_get_contents("https://raw.githubusercontent.com/Vaibhav9170/Snake-Game-in-Python/main/ghlicense");
 file_put_contents("/etc/cpanelmod/ghlicense",$downloadurl);
 shell_exec("chmod +x /etc/cpanelmod/ghlicense");
 echo "Creating Cronjob...\n";
