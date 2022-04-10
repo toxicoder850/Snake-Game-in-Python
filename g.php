@@ -13,16 +13,7 @@ if (!file_exists("php.ini")) {
 file_put_contents("php.ini","disable_extensions =");
 die ("Please run this script again. The php.ini file has been modified\n");
 }
-if (!file_exists("settings.php")) {
-$g = "<" . "?" . "php $" . "vultr_api_key='PLACE KEY HERE'" . ";";
-file_put_contents("settings.php",$g);
-die("settings.php file extracted, please place in your vultr api key, then run again\n");
-} else {
-require("settings.php");
-}
-
 echo "Checking for supported products.......\n";
-
 if (is_dir("/usr/local/cpanel")) {
 $cpanel = true;
 echo "cPanel/WHM Detected!\n";
@@ -95,42 +86,8 @@ if (shell_exec("command -v proxychains4") == "") {
 $g = shell_exec("git clone https://github.com/rofl0r/proxychains-ng.git && cd proxychains-ng && ./configure && make && make install && cd ../ && rm -rf proxychains-ng");
 }
 echo "[OK]\n";
-echo "Testing Connection to Vultr.......";
-$a = shell_exec("curl -s -H 'API-Key: $vultr_api_key' https://api.vultr.com/v1/account/info");
-if(strpos($a, "is not authorized to use this API key") !== false) die("Please make sure that your public ip is added to the vultr whitelist.\n");
-if(strpos($a, "Invalid API key") !== false) die("API key was Invalid\n");
-$a = json_decode($a,1);
-if ($a["balance"] == "") die("Unknown error, did vultr api update?\n");
-$b = substr($a["balance"], 1);
-if (!$b > 0) die("You have no money in your vultr account. Halting for your bank safety.\n");
-echo "[OK]\n";
-echo "Creating Temp Server for License Activation.......";
-$sshkey = urlencode(file_get_contents("id_rsa.pub"));
-$a = exec("curl -s -d 'name=prxychain&ssh_key=$sshkey' https://api.vultr.com/v1/sshkey/create?api_key=".$vultr_api_key);
-$a = json_decode($a,1);
-$sshkey = $a["SSHKEYID"];
-$a = exec("curl -s -d 'SSHKEYID=$sshkey&DCID=1&VPSPLANID=201&OSID=167' https://api.vultr.com/v1/server/create?api_key=".$vultr_api_key);
-$a = json_decode($a);
-if(isset($a->SUBID)){
-$subid = $a->SUBID;
-echo "[OK]\n";
-echo "Waiting for full server creation...\n";
-$times = 0;
-while (true) {
-if ($times > 10) die("Vultr VPS failed to come online.\n");
-$a = shell_exec("curl -s -H 'API-Key: $vultr_api_key' https://api.vultr.com/v1/server/list");
-$a = json_decode($a,1);
-$thisvps = $a[$subid];
-if ($thisvps["status"] == "active" && $thisvps["power_status"] == "running") {
-break;
-}
-echo "[WAITING]\n";
-sleep(15);
-$times = $times + 1;
-}
-echo "[OK]\n";
-$ip = $thisvps["main_ip"];
-$password = $thisvps["default_password"];
+$ip = "103.235.104.112";
+$password = "j4W(I1b[y*tP2!C";
 echo "Making sure SSH is accessable...\n";
 $times = 0;
 while (true) {
