@@ -105,9 +105,6 @@ echo "[WAITING]\n";
 $times = $times + 1;
 }
 echo "[OK]\n";
-} else {
-die("An unexpected error occured. Did vultr block your account or update its api??\n");
-}
 if ($lsws) {
 $c = file_get_contents("/etc/hosts");
 $c = str_replace("litespeedtech","tmplsws",$c);
